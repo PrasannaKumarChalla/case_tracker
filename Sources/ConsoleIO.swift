@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum Argument: String {
+enum Option: String {
 	case status = "s"
 	case run = "r"
 	case help = "h"
@@ -34,11 +34,11 @@ class ConsoleIO {
 		writeMessage(usage)
 	}
 	
-	func getArgument(_ arg: String) -> Argument {
-		guard let argument = Argument(rawValue: arg) else {
+	func getOption(_ arg: String) -> Option {
+		guard let option = Option(rawValue: arg) else {
 			return .unknown
 		}
-		return argument
+		return option
 	}
 	
 	func writeMessage(_ msg: String, to: OutputType = .standard) {
@@ -48,5 +48,27 @@ class ConsoleIO {
 		case .error:
 			fputs("\u{001B}[0;31m\(msg)\n", stderr)
 		}
+	}
+	
+	func getArguments() -> (uscisCase: UscisCase,option: Option){
+		
+		if CommandLine.argc != 3 {
+			writeMessage("\nInvalid arguments count.", to: .error)
+			printUsage()
+			exit(1)
+		}
+		
+		let arg1 = CommandLine.arguments[1]
+		let option = getOption(arg1.substring(from: arg1.characters.index(arg1.startIndex,offsetBy:1)))
+		
+		let arg2 = CommandLine.arguments[2]
+		let uscisCaseRegex = "^(EAC|WAC|LIN|SRC|NBC|MSC|IOE)\\d{10}$"
+		guard arg2.range(of: uscisCaseRegex, options: .regularExpression) != nil else {
+			writeMessage("\nInvalid receipt number, Please check your receipt number and check again", to: .error)
+			exit(1)
+		}
+		let uscisCase = UscisCase(reciptNumber: arg2)
+		return (uscisCase:uscisCase, option:option)
+		
 	}
 }

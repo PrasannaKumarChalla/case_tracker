@@ -1,7 +1,8 @@
 version: "Apple Swift version 3.1 (swiftlang-802.0.48 clang-802.0.38)"
 options: "53622098912c02ec5c82bd8282daeb75"
-build_time: [553125769, 777948000]
+build_time: [553130656, 105311000]
 inputs:
-  "/Users/prasanna/Dev/Learning/uscis/Sources/ConsoleIO.swift": [553125767, 0]
+  "/Users/prasanna/Dev/Learning/uscis/Sources/ConsoleIO.swift": [553130655, 0]
+  "/Users/prasanna/Dev/Learning/uscis/Sources/UscisCase.swift": [553127940, 0]
   "/Users/prasanna/Dev/Learning/uscis/Sources/main.swift": [553123646, 0]
-  "/Users/prasanna/Dev/Learning/uscis/Sources/Uscis.swift": [553125564, 0]
+  "/Users/prasanna/Dev/Learning/uscis/Sources/Uscis.swift": [553130184, 0]

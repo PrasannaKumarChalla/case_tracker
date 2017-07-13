@@ -12,16 +12,10 @@ class Uscis {
 	let consoleIO = ConsoleIO()
 	
 	func run() {
-		if CommandLine.argc != 3 {
-			consoleIO.writeMessage("\nInvalid arguments count.", to: .error)
-			consoleIO.printUsage()
-			exit(1)
-		}
 		
-		let arg = CommandLine.arguments[1]
-		let option = consoleIO.getArgument(arg.substring(from: arg.characters.index(arg.startIndex,offsetBy:1)))
+		let args = consoleIO.getArguments()
 		
-		switch option {
+		switch args.option {
 		case .help:
 			consoleIO.printUsage()
 		case .run:
@@ -29,7 +23,7 @@ class Uscis {
 		case .status:
 			consoleIO.writeMessage("Implement code to check status.")
 		case .unknown:
-			consoleIO.writeMessage("\nUnknown argument: \(arg).",to: .error)
+			consoleIO.writeMessage("\nUnknown argument: \(CommandLine.arguments[1]).",to: .error)
 			consoleIO.printUsage()
 		}
 		
