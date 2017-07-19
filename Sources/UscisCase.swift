@@ -12,6 +12,6 @@ struct UscisCase {
 	let reciptNumber: String
 	
 	func status() -> String {
-		
+		return ""
 	}
 }
