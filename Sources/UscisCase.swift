@@ -10,4 +10,8 @@ import Foundation
 
 struct UscisCase {
 	let reciptNumber: String
+	
+	func status() -> String {
+		
+	}
 }

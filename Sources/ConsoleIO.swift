@@ -47,6 +47,8 @@ class ConsoleIO {
 			print("\u{001B}[;m\(msg)")
 		case .error:
 			fputs("\u{001B}[0;31m\(msg)\n", stderr)
+			print("\u{001B}[;m")
+			//print("\n")
 		}
 	}
 	
@@ -64,7 +66,7 @@ class ConsoleIO {
 		let arg2 = CommandLine.arguments[2]
 		let uscisCaseRegex = "^(EAC|WAC|LIN|SRC|NBC|MSC|IOE)\\d{10}$"
 		guard arg2.range(of: uscisCaseRegex, options: .regularExpression) != nil else {
-			writeMessage("\nInvalid receipt number, Please check your receipt number and check again", to: .error)
+			writeMessage("Invalid receipt number, Please check your receipt number and try again", to: .error)
 			exit(1)
 		}
 		let uscisCase = UscisCase(reciptNumber: arg2)
