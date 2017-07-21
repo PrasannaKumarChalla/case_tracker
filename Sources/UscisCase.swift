@@ -46,8 +46,10 @@ struct UscisCase {
 	
 	func parseStatus(_ html: String) -> String? {
 		let consoleIO = ConsoleIO()
-		//let pattern = ".*Your Current Status:</strong>\s*(?P<prog>[^<]+?)\s*<span.*"
-		//let pattern = "<strong>Your Current Status:<\\/strong>\\s*[^<]+?\\ s*<span"
+		
+		
+		/* Regex:
+		*/
 		let pattern = "<strong>Your Current Status:<\\/strong>\\s*(?<patt>[^<]+?)\\s*<span"
 		
 		guard let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive) else {
@@ -62,9 +64,6 @@ struct UscisCase {
 			return nil
 		}
 		return status
-//		if let typeRange = html.range(of: pattern, options: .regularExpression) {
-//			return html[typeRange]
-//		} else { return nil }
 
 	}
 }
