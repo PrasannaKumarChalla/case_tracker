@@ -3,5 +3,6 @@
 import PackageDescription
 
 let package = Package(
-    name: "uscis"
+    name: "uscis",
+    exclude: ["Sources/Models"]
 )

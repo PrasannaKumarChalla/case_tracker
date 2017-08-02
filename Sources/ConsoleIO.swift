@@ -64,12 +64,10 @@ class ConsoleIO {
 		let option = getOption(arg1.substring(from: arg1.characters.index(arg1.startIndex,offsetBy:1)))
 		
 		let arg2 = CommandLine.arguments[2]
-		let uscisCaseRegex = "^(EAC|WAC|LIN|SRC|NBC|MSC|IOE)\\d{10}$"
-		guard arg2.range(of: uscisCaseRegex, options: .regularExpression) != nil else {
+		guard let uscisCase = UscisCase(reciptNumber: arg2) else {
 			writeMessage("Invalid receipt number, Please check your receipt number and try again", to: .error)
 			exit(1)
 		}
-		let uscisCase = UscisCase(reciptNumber: arg2)
 		return (uscisCase:uscisCase, option:option)
 		
 	}
