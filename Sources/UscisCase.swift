@@ -66,7 +66,8 @@ struct UscisCase {
 		let textRange = NSMakeRange(0, html.utf16.count)
 		let matches = regex.matches(in: html, range: textRange)
 		
-		guard let status = (html as? NSString)?.substring(with: matches[0].rangeAt(1)) else {
+        let status = (html as NSString).substring(with: matches[0].rangeAt(1))
+        if status.isEmpty {
 			consoleIO.writeMessage("Couldn't crawl status from the response.",to: .error)
 			return nil
 		}
