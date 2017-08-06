@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D0AE9241F37E1F700080D42 /* CaseModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7D0AE9221F37E1F700080D42 /* CaseModel.xcdatamodeld */; };
 		OBJ_24 /* ConsoleIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_8 /* ConsoleIO.swift */; };
 		OBJ_25 /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* CustomError.swift */; };
 		OBJ_26 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* main.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7D0AE9231F37E1F700080D42 /* CaseModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CaseModel.xcdatamodel; sourceTree = "<group>"; };
 		OBJ_10 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		OBJ_11 /* Uscis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Uscis.swift; sourceTree = "<group>"; };
 		OBJ_12 /* UscisCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UscisCase.swift; sourceTree = "<group>"; };
@@ -71,7 +73,7 @@
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -79,7 +81,6 @@
 				OBJ_13 /* Tests */,
 				OBJ_16 /* Products */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
@@ -90,6 +91,7 @@
 				OBJ_10 /* main.swift */,
 				OBJ_11 /* Uscis.swift */,
 				OBJ_12 /* UscisCase.swift */,
+				7D0AE9221F37E1F700080D42 /* CaseModel.xcdatamodeld */,
 			);
 			path = Sources;
 			sourceTree = SOURCE_ROOT;
@@ -144,7 +146,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_16 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -165,6 +167,7 @@
 				OBJ_26 /* main.swift in Sources */,
 				OBJ_27 /* Uscis.swift in Sources */,
 				OBJ_28 /* UscisCase.swift in Sources */,
+				7D0AE9241F37E1F700080D42 /* CaseModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,6 +329,19 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		7D0AE9221F37E1F700080D42 /* CaseModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				7D0AE9231F37E1F700080D42 /* CaseModel.xcdatamodel */,
+			);
+			currentVersion = 7D0AE9231F37E1F700080D42 /* CaseModel.xcdatamodel */;
+			path = CaseModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = OBJ_1 /* Project object */;
 }
