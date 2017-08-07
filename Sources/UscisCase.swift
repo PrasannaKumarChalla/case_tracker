@@ -12,7 +12,8 @@ struct UscisCase {
 	
 	let reciptNumber: String
 	let consoleIO = ConsoleIO()
-	
+    static let dispatchGroup = DispatchGroup.init()
+    
 	init?(reciptNumber: String) {
 		guard UscisCase.isValidReciptNumber(reciptNumber) else {
 			return nil
@@ -21,36 +22,47 @@ struct UscisCase {
 	}
 	//will send a POST req, fetches result, will parse it and filter the status using regex.
 	func getStatus() {
-		
-		
-		var request = URLRequest(url: URL(string: "https://egov.uscis.gov/casestatus/mycasestatus.do")!)
-		request.httpMethod = "POST"
-		let formData = "appReceiptNum=\(self.reciptNumber)"
-		request.httpBody = formData.data(using: .utf8)
-		
-		let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-			guard let data = data, error == nil else {
-				self.consoleIO.writeMessage("Networking Error:\(error.debugDescription)", to: .error)
-				return
-			}
-			
-			if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
-				self.consoleIO.writeMessage("Error Requesting Case Status: Error Code:\(httpStatus.statusCode), error:\(response.debugDescription)", to: .error)
-			}
-			guard let responseStr = String(data: data, encoding: .utf8) else {
-				self.consoleIO.writeMessage("Can't parse result as string.", to: .error)
-				return
-			}
-			guard let status = self.parseStatus(responseStr) else {
-				self.consoleIO.writeMessage("Can't find status in the reponse.", to: .error)
-				return
-			}
-			self.consoleIO.writeMessage("Status: \(status)")
-			exit(0)
-		}
-		task.resume()
+        UscisCase.dispatchGroup.enter()
+		self.urlTask().resume()
 	}
-	
+    
+    func getStatusWithRelatedCases() throws {
+        for uscisCase in try self.relatedCases() {
+            uscisCase.getStatus()
+        }
+        UscisCase.dispatchGroup.notify(queue: .global()) {
+            exit(0)
+        }
+    }
+    
+    func urlTask() -> URLSessionDataTask {
+        let task = URLSession.shared.dataTask(with: self.getRequestForCaseNumber()) { (data, response, error) in
+            guard let data = data, error == nil else {
+                self.consoleIO.writeMessage("Networking Error:\(error.debugDescription)", to: .error)
+                UscisCase.dispatchGroup.leave()
+                return
+            }
+            
+            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
+                self.consoleIO.writeMessage("Error Requesting Case Status: Error Code:\(httpStatus.statusCode), error:\(response.debugDescription)", to: .error)
+            }
+            guard let responseStr = String(data: data, encoding: .utf8) else {
+                self.consoleIO.writeMessage("Can't parse result as string.", to: .error)
+                UscisCase.dispatchGroup.leave()
+                return
+            }
+            guard let status = self.parseStatus(responseStr) else {
+                self.consoleIO.writeMessage("Can't find status in the reponse.", to: .error)
+                UscisCase.dispatchGroup.leave()
+                return
+            }
+            self.consoleIO.writeMessage("\(self.reciptNumber): \(status)")
+            UscisCase.dispatchGroup.leave()
+        }
+        return task
+        
+    }
+    
 	func parseStatus(_ html: String) -> String? {
 		let consoleIO = ConsoleIO()
 		
@@ -102,4 +114,12 @@ struct UscisCase {
 		}
 		return true
 	}
+    
+    func getRequestForCaseNumber() -> URLRequest {
+        var request = URLRequest(url: URL(string: "https://egov.uscis.gov/casestatus/mycasestatus.do")!)
+        request.httpMethod = "POST"
+        let formData = "appReceiptNum=\(self.reciptNumber)"
+        request.httpBody = formData.data(using: .utf8)
+        return request
+    }
 }

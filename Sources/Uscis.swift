@@ -21,7 +21,12 @@ class Uscis {
 		case .run:
 			consoleIO.writeMessage("Implement code to run as daemon")
 		case .status:
-			args.uscisCase.getStatus()
+            do {
+			try args.uscisCase.getStatusWithRelatedCases()
+            } catch {
+                consoleIO.writeMessage("Error:\(error.localizedDescription)", to: .error)
+                exit(1)
+            }
 		case .unknown:
 			consoleIO.writeMessage("\nUnknown argument: \(CommandLine.arguments[1]).",to: .error)
 			consoleIO.printUsage()
