@@ -12,6 +12,7 @@ struct UscisCase {
 	
 	let reciptNumber: String
 	let consoleIO = ConsoleIO()
+    let caseController = CaseController()
     static let dispatchGroup = DispatchGroup.init()
     
 	init?(reciptNumber: String) {
@@ -31,6 +32,18 @@ struct UscisCase {
             uscisCase.getStatus()
         }
         UscisCase.dispatchGroup.notify(queue: .global()) {
+            do {
+            for relatedCase in try self.relatedCases() {
+                guard let uscisCase = self.caseController.fetchCase(caseNumber: relatedCase.reciptNumber) else {
+                    self.consoleIO.writeMessage("Can't print by fetching cases.")
+                    exit(1)
+                }
+                self.consoleIO.writeMessage("\(uscisCase.lastCheckedDate!)-\(uscisCase.caseNumber!):\(uscisCase.lastStatus!)")
+            }
+            } catch {
+                self.consoleIO.writeMessage("Error occured while trying to print uscis cases.\(error.localizedDescription)")
+                exit(1)
+            }
             exit(0)
         }
     }
@@ -56,7 +69,9 @@ struct UscisCase {
                 UscisCase.dispatchGroup.leave()
                 return
             }
-            self.consoleIO.writeMessage("\(self.reciptNumber): \(status)")
+            //instead of writing to console save it to coredata
+            //self.consoleIO.writeMessage("\(self.reciptNumber): \(status)")
+            self.caseController.saveCaseStatus(caseNumber: self.reciptNumber, status: status)
             UscisCase.dispatchGroup.leave()
         }
         return task

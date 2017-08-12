@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		7D0AE9241F37E1F700080D42 /* CaseModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7D0AE9221F37E1F700080D42 /* CaseModel.xcdatamodeld */; };
+		7DAD18A41F3AB58B00C112D4 /* UscisCaseStatus+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAD18A21F3AB58B00C112D4 /* UscisCaseStatus+CoreDataClass.swift */; };
+		7DAD18A51F3AB58B00C112D4 /* UscisCaseStatus+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAD18A31F3AB58B00C112D4 /* UscisCaseStatus+CoreDataProperties.swift */; };
+		7DAD18AB1F3D2EB200C112D4 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAD18AA1F3D2EB200C112D4 /* DataController.swift */; };
+		7DAD18AD1F3E7F5900C112D4 /* CaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAD18AC1F3E7F5900C112D4 /* CaseController.swift */; };
 		OBJ_24 /* ConsoleIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_8 /* ConsoleIO.swift */; };
 		OBJ_25 /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* CustomError.swift */; };
 		OBJ_26 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* main.swift */; };
@@ -18,13 +22,16 @@
 
 /* Begin PBXFileReference section */
 		7D0AE9231F37E1F700080D42 /* CaseModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CaseModel.xcdatamodel; sourceTree = "<group>"; };
+		7DAD18A21F3AB58B00C112D4 /* UscisCaseStatus+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UscisCaseStatus+CoreDataClass.swift"; sourceTree = "<group>"; };
+		7DAD18A31F3AB58B00C112D4 /* UscisCaseStatus+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UscisCaseStatus+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		7DAD18AA1F3D2EB200C112D4 /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		7DAD18AC1F3E7F5900C112D4 /* CaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaseController.swift; sourceTree = "<group>"; };
 		OBJ_10 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		OBJ_11 /* Uscis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Uscis.swift; sourceTree = "<group>"; };
 		OBJ_12 /* UscisCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UscisCase.swift; sourceTree = "<group>"; };
 		OBJ_15 /* UscisTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UscisTest.swift; sourceTree = "<group>"; };
 		OBJ_17 /* uscis */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = uscis; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_18 /* SampleTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = SampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		OBJ_8 /* ConsoleIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleIO.swift; sourceTree = "<group>"; };
 		OBJ_9 /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,7 +83,8 @@
 		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
-				OBJ_6 /* Package.swift */,
+				7DAD18A21F3AB58B00C112D4 /* UscisCaseStatus+CoreDataClass.swift */,
+				7DAD18A31F3AB58B00C112D4 /* UscisCaseStatus+CoreDataProperties.swift */,
 				OBJ_7 /* Sources */,
 				OBJ_13 /* Tests */,
 				OBJ_16 /* Products */,
@@ -92,6 +100,8 @@
 				OBJ_11 /* Uscis.swift */,
 				OBJ_12 /* UscisCase.swift */,
 				7D0AE9221F37E1F700080D42 /* CaseModel.xcdatamodeld */,
+				7DAD18AA1F3D2EB200C112D4 /* DataController.swift */,
+				7DAD18AC1F3E7F5900C112D4 /* CaseController.swift */,
 			);
 			path = Sources;
 			sourceTree = SOURCE_ROOT;
@@ -163,9 +173,13 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_24 /* ConsoleIO.swift in Sources */,
+				7DAD18A41F3AB58B00C112D4 /* UscisCaseStatus+CoreDataClass.swift in Sources */,
 				OBJ_25 /* CustomError.swift in Sources */,
+				7DAD18AD1F3E7F5900C112D4 /* CaseController.swift in Sources */,
 				OBJ_26 /* main.swift in Sources */,
+				7DAD18AB1F3D2EB200C112D4 /* DataController.swift in Sources */,
 				OBJ_27 /* Uscis.swift in Sources */,
+				7DAD18A51F3AB58B00C112D4 /* UscisCaseStatus+CoreDataProperties.swift in Sources */,
 				OBJ_28 /* UscisCase.swift in Sources */,
 				7D0AE9241F37E1F700080D42 /* CaseModel.xcdatamodeld in Sources */,
 			);
